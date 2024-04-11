@@ -1,0 +1,28 @@
+﻿<div class="container vertical" style="display: flex;justify-content: center;">
+    <IgbButton @onclick="OnDialogShow" Variant=@ButtonVariant.Contained>ダイアログを開く</IgbButton>
+    <IgbDialog @ref="DialogRef" Title="日付を選んでください">
+        <IgbDatePicker OpenAsChild="true"
+                       IsFixed="true" />
+        <IgbButton slot="footer" @onclick="OnDialogHide" Variant=@ButtonVariant.Flat>キャンセル</IgbButton>
+        <IgbButton slot="footer" @onclick="OnDialogHide" Variant=@ButtonVariant.Flat>OK</IgbButton>
+    </IgbDialog>
+</div>
+
+@code {
+    public IgbDialog? DialogRef;
+    public async Task OnDialogShow()
+    {
+        if (this.DialogRef != null)
+        {
+            await this.DialogRef.ShowAsync();
+        }
+    }
+
+    public async Task OnDialogHide()
+    {
+        if (this.DialogRef != null)
+        {
+            await this.DialogRef.HideAsync();
+        }
+    }
+}
